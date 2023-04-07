@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, avoid_print
+
 library essential_kit;
 
 import 'package:flutter/material.dart';
@@ -62,12 +64,15 @@ class myButton extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   if (onPress != null) onPress!();
-                  if (vibration == VibIntensity.low)
+                  if (vibration == VibIntensity.low) {
                     HapticFeedback.lightImpact();
-                  if (vibration == VibIntensity.medium)
+                  }
+                  if (vibration == VibIntensity.medium) {
                     HapticFeedback.mediumImpact();
-                  if (vibration == VibIntensity.high)
+                  }
+                  if (vibration == VibIntensity.high) {
                     HapticFeedback.heavyImpact();
+                  }
                 },
                 splashColor: splashColor,
                 highlightColor: Colors.black.withOpacity(0.05),
