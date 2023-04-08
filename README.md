@@ -14,6 +14,16 @@ The Flutter package provides developers with a range of customizable widgets and
 
 - **Toast function:** This function allows developers to display a toast message, which is a small message that appears on the screen to provide feedback to the user. This feature is commonly used to display information such as confirmation messages or error messages. The toast message is customizable, allowing developers to set the duration of the message, the background color, and the font style.
 
+- **Coloured Print functions:** This function allows developers to display a coloured text message according to the required types as:
+
+**printWarning**
+
+**printError**
+
+**printBlue**
+
+- **Notification Show:** This function allows developers to show a push notification to android and ios. Refer the package flutter_local_notifications to set up permissions in android and ios respectively.
+
 ```dart
 
 myButton();
@@ -24,6 +34,9 @@ getDeviceWidth(context);
 getDeviceHeight(context)
 printWarning(text);
 printError(text)
+printBlue(text);
+printWarning(text);
+printError(text);
 printBlue(text);
 
 ```
