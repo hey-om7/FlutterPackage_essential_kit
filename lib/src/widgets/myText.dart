@@ -11,19 +11,21 @@ class myText extends StatelessWidget {
     this.fontSize,
     this.bold,
     this.padding,
+    this.softWrap,
   });
   final String text;
   final FontWeight? bold;
   final Color? color;
   final double? fontSize;
   final EdgeInsetsGeometry? padding;
-
+  final bool? softWrap;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: padding ?? const EdgeInsets.all(0),
       child: Text(
         text,
+        softWrap: softWrap,
         style: TextStyle(
             fontWeight: bold ?? FontWeight.normal,
             color: color ?? Colors.grey,
