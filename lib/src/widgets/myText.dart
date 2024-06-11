@@ -12,6 +12,7 @@ class myText extends StatelessWidget {
     this.bold,
     this.padding,
     this.softWrap,
+    this.fontFamily,
   });
   final String text;
   final FontWeight? bold;
@@ -19,6 +20,7 @@ class myText extends StatelessWidget {
   final double? fontSize;
   final EdgeInsetsGeometry? padding;
   final bool? softWrap;
+  final String? fontFamily;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +32,7 @@ class myText extends StatelessWidget {
             fontWeight: bold ?? FontWeight.normal,
             color: color ?? Colors.grey,
             fontSize: fontSize ?? 25.0,
-            fontFamily: "Inter"),
+            fontFamily: fontFamily ?? "Inter"),
       ),
     );
   }

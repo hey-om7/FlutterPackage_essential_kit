@@ -1,10 +1,10 @@
 name: essential_kit
 description: It contains a collection of essential functions and widgets that are necessary for building any application.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/hey-om7/FlutterPackage_essential_kit
 
 environment:
-  sdk: ">=2.19.6 <3.0.0"
+  sdk: ">=2.19.6 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
