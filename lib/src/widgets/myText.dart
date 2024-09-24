@@ -32,7 +32,7 @@ class myText extends StatelessWidget {
             fontWeight: bold ?? FontWeight.normal,
             color: color ?? Colors.grey,
             fontSize: fontSize ?? 25.0,
-            fontFamily: fontFamily ?? "Inter"),
+            fontFamily: fontFamily),
       ),
     );
   }

@@ -1,6 +1,6 @@
 name: essential_kit
 description: It contains a collection of essential functions and widgets that are necessary for building any application.
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/hey-om7/FlutterPackage_essential_kit
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_local_notifications: ^13.0.0
+  flutter_local_notifications: ^17.2.3
 
 dev_dependencies:
   flutter_test:
