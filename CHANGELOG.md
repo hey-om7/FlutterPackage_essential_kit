@@ -17,3 +17,7 @@ FontFamily has been updated to user input
 ## 0.0.5
 
 Notification package has been updated to latest version
+
+## 0.0.6
+
+myButton has been updated with press animation

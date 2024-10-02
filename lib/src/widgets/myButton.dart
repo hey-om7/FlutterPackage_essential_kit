@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import 'myText.dart';
 
 enum VibIntensity { high, medium, low }
 
-class myButton extends StatelessWidget {
+class myButton extends StatefulWidget {
   const myButton({
     super.key,
     this.text,
@@ -28,6 +29,9 @@ class myButton extends StatelessWidget {
     this.enable,
     this.customBorderRadius,
     this.customPadding,
+    this.pressAnimation,
+    this.pressAnimationScale,
+    this.pressAnimationDuration,
   });
   final String? text;
   final Color? textColor;
@@ -47,59 +51,100 @@ class myButton extends StatelessWidget {
   final Border? border;
   final bool? enable;
   final BorderRadius? customBorderRadius;
+  final bool? pressAnimation;
+  final double? pressAnimationScale;
+  final Duration? pressAnimationDuration;
 
+  @override
+  State<myButton> createState() => _myButtonState();
+}
+
+class _myButtonState extends State<myButton> {
+  bool _isPressed = false;
+  DateTime _startTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Opacity(
-      opacity: enable ?? true ? 1 : 0.4,
+      opacity: widget.enable ?? true ? 1 : 0.4,
       child: Padding(
-        padding: margin ?? const EdgeInsets.all(0),
+        padding: widget.margin ?? const EdgeInsets.all(0),
         child: ClipRRect(
-          borderRadius:
-              customBorderRadius ?? BorderRadius.circular(borderRadius ?? 20),
+          borderRadius: widget.customBorderRadius ??
+              BorderRadius.circular(widget.borderRadius ?? 20),
           child: Material(
             color: Colors.transparent,
             child: IgnorePointer(
-              ignoring: !(enable ?? true),
+              ignoring: !(widget.enable ?? true),
               child: InkWell(
+                onTapDown: (details) {
+                  setState(() => _isPressed = true);
+                  _startTime = DateTime.now();
+                },
+                onTapCancel: () {
+                  setState(() => _isPressed = false);
+                },
+                onTapUp: (details) async {
+                  DateTime endTime = DateTime.now();
+                  Duration difference = endTime.difference(_startTime);
+                  if (difference.inMilliseconds < 100) {
+                    await Future.delayed((100 - difference.inMilliseconds).ms,
+                        () {
+                      setState(() => _isPressed = false);
+                    });
+                  } else {
+                    setState(() => _isPressed = false);
+                  }
+                },
                 onTap: () {
-                  if (onPress != null) onPress!();
-                  if (vibration == VibIntensity.low) {
+                  if (widget.onPress != null) widget.onPress!();
+                  if (widget.vibration == VibIntensity.low) {
                     HapticFeedback.lightImpact();
                   }
-                  if (vibration == VibIntensity.medium) {
+                  if (widget.vibration == VibIntensity.medium) {
                     HapticFeedback.mediumImpact();
                   }
-                  if (vibration == VibIntensity.high) {
+                  if (widget.vibration == VibIntensity.high) {
                     HapticFeedback.heavyImpact();
                   }
                 },
-                splashColor: splashColor,
+                splashColor: widget.splashColor,
                 highlightColor: Colors.black.withOpacity(0.05),
                 child: Ink(
-                  height: height,
-                  width: width,
-                  padding: customPadding ?? EdgeInsets.all(padding ?? 15),
+                  height: widget.height,
+                  width: widget.width,
+                  padding: widget.customPadding ??
+                      EdgeInsets.all(widget.padding ?? 15),
                   decoration: BoxDecoration(
-                    border: border,
-                    borderRadius: customBorderRadius ??
-                        BorderRadius.circular(borderRadius ?? 20),
-                    color: backgroundColor ?? Colors.blue,
+                    border: widget.border,
+                    borderRadius: widget.customBorderRadius ??
+                        BorderRadius.circular(widget.borderRadius ?? 20),
+                    color: widget.backgroundColor ?? Colors.blue,
                   ),
                   child: Center(
-                    child: child ??
+                    child: widget.child ??
                         myText(
-                          text: text ?? "Press",
-                          color: textColor ?? Colors.white,
-                          fontSize: textSize,
-                          bold: bold,
+                          text: widget.text ?? "Press",
+                          color: widget.textColor ?? Colors.white,
+                          fontSize: widget.textSize,
+                          bold: widget.bold,
                         ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
+        )
+            .animate(
+              target: _isPressed && (widget.pressAnimation ?? false) ? 1 : 0,
+            ) // Apply animation
+            .scaleXY(
+              begin: 1.0,
+              end:
+                  widget.pressAnimationScale ?? 0.95, // Scale down when pressed
+              duration:
+                  widget.pressAnimationDuration ?? 100.ms, // Animation duration
+              curve: Curves.easeInOut, // Smooth transition
+            ),
       ),
     );
   }
