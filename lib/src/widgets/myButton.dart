@@ -32,6 +32,7 @@ class myButton extends StatefulWidget {
     this.pressAnimation,
     this.pressAnimationScale,
     this.pressAnimationDuration,
+    this.splashAnimation = true,
   });
   final String? text;
   final Color? textColor;
@@ -54,6 +55,7 @@ class myButton extends StatefulWidget {
   final bool? pressAnimation;
   final double? pressAnimationScale;
   final Duration? pressAnimationDuration;
+  final bool splashAnimation;
 
   @override
   State<myButton> createState() => _myButtonState();
@@ -107,8 +109,12 @@ class _myButtonState extends State<myButton> {
                     HapticFeedback.heavyImpact();
                   }
                 },
-                splashColor: widget.splashColor,
-                highlightColor: Colors.black.withOpacity(0.05),
+                splashColor: widget.splashAnimation
+                    ? widget.splashColor
+                    : Colors.transparent,
+                highlightColor: widget.splashAnimation
+                    ? Colors.black.withOpacity(0.05)
+                    : Colors.transparent,
                 child: Ink(
                   height: widget.height,
                   width: widget.width,

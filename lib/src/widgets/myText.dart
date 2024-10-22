@@ -6,13 +6,13 @@ class myText extends StatelessWidget {
   const myText({
     super.key,
     required this.text,
-    // this.isBold,
     this.color,
     this.fontSize,
     this.bold,
     this.padding,
     this.softWrap,
     this.fontFamily,
+    this.overflow,
   });
   final String text;
   final FontWeight? bold;
@@ -21,6 +21,7 @@ class myText extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final bool? softWrap;
   final String? fontFamily;
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return Padding(

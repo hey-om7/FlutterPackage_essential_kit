@@ -21,3 +21,7 @@ Notification package has been updated to latest version
 ## 0.0.6
 
 myButton has been updated with press animation
+
+## 0.0.7
+
+myText has overflow field, myButton has splashAnimation boolean field
