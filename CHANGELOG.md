@@ -25,3 +25,7 @@ myButton has been updated with press animation
 ## 0.0.7
 
 myText has overflow field, myButton has splashAnimation boolean field
+
+## 0.0.8
+
+myNavigator added, myText has align feature, myRoundedDialogs implemented

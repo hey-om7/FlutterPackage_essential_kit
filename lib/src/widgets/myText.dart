@@ -13,6 +13,7 @@ class myText extends StatelessWidget {
     this.softWrap,
     this.fontFamily,
     this.overflow,
+    this.textAlign,
   });
   final String text;
   final FontWeight? bold;
@@ -22,6 +23,7 @@ class myText extends StatelessWidget {
   final bool? softWrap;
   final String? fontFamily;
   final TextOverflow? overflow;
+  final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,6 +31,7 @@ class myText extends StatelessWidget {
       child: Text(
         text,
         softWrap: softWrap,
+        textAlign: textAlign,
         style: TextStyle(
             fontWeight: bold ?? FontWeight.normal,
             color: color ?? Colors.grey,
