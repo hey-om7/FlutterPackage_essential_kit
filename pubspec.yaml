@@ -1,6 +1,6 @@
 name: essential_kit
 description: It contains a collection of essential functions and widgets that are necessary for building any application.
-version: 0.0.8
+version: 0.0.9
 homepage: https://github.com/hey-om7/FlutterPackage_essential_kit
 
 environment:

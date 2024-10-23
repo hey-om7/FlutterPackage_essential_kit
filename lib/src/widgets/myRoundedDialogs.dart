@@ -9,10 +9,14 @@ class myRoundedDialogBox {
     required this.width,
     this.curveRadius,
     this.onDialogClosed,
+    this.isDismissible = true,
+    this.surroundColor,
   }) {
     // Automatically show the dialog in the constructor
     showDialog(
       context: context,
+      barrierDismissible: isDismissible,
+      barrierColor: surroundColor,
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -22,12 +26,12 @@ class myRoundedDialogBox {
             clipBehavior: Clip.hardEdge,
             height: height,
             width: width,
-            child: child ?? Container(),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius:
                   BorderRadius.circular(curveRadius?.toDouble() ?? 35),
             ),
+            child: child ?? Container(),
           ),
         );
       },
@@ -43,4 +47,6 @@ class myRoundedDialogBox {
   final double height;
   final double width;
   final VoidCallback? onDialogClosed;
+  final bool isDismissible;
+  final Color? surroundColor;
 }
